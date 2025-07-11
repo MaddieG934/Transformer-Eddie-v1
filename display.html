@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        \[pe = \begin{pmatrix} 
+        0 & 0 & 0 & ... & 0 \\
+        0 & 0 & 0 & ... & 0 \\
+        0 & 0 & 0 & ... & 0 \\
+         &  & & ... &  \\
+        0 & 0 & 0 & ... & 0
+        \end{pmatrix}\]
+        \[position = [0, 1, 2, ..., seq\_len]\]
+        \[div\_term = [ \frac{1}{1000^\frac{0}{d_{model}}}, \frac{1}{1000^\frac{2}{d_{model}}}, \frac{1}{1000^\frac{4}{d_{model}}}, ..., \frac{1}{1000^\frac{d_{model}}{d_{model}}}]\]
+        \[pe = \begin{pmatrix} 
+        \sin(position[0] * div\_term[0]) & \cos(position[1] * div\_term[1]) & \sin(position[2] * div\_term[2]) & ... & \sin(position[] * div\_term[2]) \\
+        \sin(position[0] * div\_term[0]) & 0 & 0 & ... & 0 \\
+        \sin(position[0] * div\_term[0]) & 0 & 0 & ... & 0 \\
+         &  & & ... &  \\
+        0 & 0 & 0 & ... & 0
+        \end{pmatrix}\]
+    </body>
+</html>
