@@ -1,0 +1,11 @@
+# Ignore saved checkpoints -- don't push to GitHub
+runs/
+weights/
+
+# Ignore the pycache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore notebook files
+*.ipynb
