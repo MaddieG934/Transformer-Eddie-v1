@@ -60,9 +60,15 @@ class PositionalEncoding(nn.Module):
     # Forward pass: add the positional encoding values to the parameter x and apply dropout. Positional encoding values
     #  do not change during training.
     def forward(self, x):
+<<<<<<< HEAD
         x = x + (self.pe[:, :x.size(1), :]).requires_grad_(False)
         return self.dropout(x)
     
+=======
+        x = x + (self.pe[:, :x.size(1), :]).requires_grad_(False) # type: ignore
+        return self.dropout(x)
+
+>>>>>>> ec116249446922a26278db22d3cae8eda6c92362
 # Normalize layer values
 class LayerNormalization(nn.Module):
     
