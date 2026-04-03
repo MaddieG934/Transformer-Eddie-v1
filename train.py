@@ -22,11 +22,8 @@ import warnings
 from tqdm import tqdm
 from pathlib import Path
 
-<<<<<<< HEAD
-=======
 import time
 
->>>>>>> ec116249446922a26278db22d3cae8eda6c92362
 def greedy_decode(model, source, source_mask, tokenizer_src, tokenizer_tgt, max_len, device):
     sos_idx = tokenizer_tgt.token_to_id('[SOS]')
     eos_idx = tokenizer_tgt.token_to_id('[EOS]')
@@ -96,15 +93,9 @@ def get_or_build_tokenizer(config, ds, lang):
     tokenizer_path = Path(config['tokenizer_file'].format(lang))
     
     if not Path.exists(tokenizer_path):
-<<<<<<< HEAD
-        tokenizer = Tokenizer(WordLevel(unk_token = '[UNK]'))
-        tokenizer.pre_tokenizer = Whitespace()
-        trainer = WordLevelTrainer(special_tokens = ['[UNK]', '[PAD]', '[SOS]', '[EOS]'], min_frequency=2)
-=======
         tokenizer = Tokenizer(WordLevel(vocab = {}, unk_token = '[UNK]'))
         tokenizer.pre_tokenizer = Whitespace() #type: ignore
         trainer = WordLevelTrainer(special_tokens = ['[UNK]', '[PAD]', '[SOS]', '[EOS]'], min_frequency=2) #type: ignore
->>>>>>> ec116249446922a26278db22d3cae8eda6c92362
         tokenizer.train_from_iterator(get_all_sentences(ds, lang), trainer = trainer)
         tokenizer.save(str(tokenizer_path))
     else:
@@ -120,15 +111,9 @@ def get_ds(config):
     tokenizer_tgt = get_or_build_tokenizer(config, ds_raw, config['lang_tgt'])
     
     # Keep 90% for training and 10% for validation
-<<<<<<< HEAD
-    train_ds_size = int(0.9 * len(ds_raw))
-    val_ds_size = len(ds_raw) - train_ds_size
-    train_ds_raw, val_ds_raw = random_split(ds_raw, [train_ds_size, val_ds_size])
-=======
     train_ds_size = int(0.9 * len(ds_raw)) # type: ignore
     val_ds_size = len(ds_raw) - train_ds_size # type: ignore
     train_ds_raw, val_ds_raw = random_split(ds_raw, [train_ds_size, val_ds_size]) # type: ignore
->>>>>>> ec116249446922a26278db22d3cae8eda6c92362
     
     train_ds = BilingualDataset(train_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
     val_ds = BilingualDataset(val_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
@@ -139,13 +124,8 @@ def get_ds(config):
     max_len_tgt = 0
     
     for item in ds_raw:
-<<<<<<< HEAD
-        src_ids = tokenizer_src.encode(item['translation'][config['lang_src']]).ids
-        tgt_ids = tokenizer_src.encode(item['translation'][config['lang_tgt']]).ids
-=======
         src_ids = tokenizer_src.encode(item['translation'][config['lang_src']]).ids #type: ignore
         tgt_ids = tokenizer_src.encode(item['translation'][config['lang_tgt']]).ids #type: ignore
->>>>>>> ec116249446922a26278db22d3cae8eda6c92362
         max_len_src = max(max_len_src, len(src_ids))
         max_len_tgt = max(max_len_tgt, len(tgt_ids))
     
@@ -227,13 +207,9 @@ def train_model(config):
             'model_state_dict': model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
             'global_step': global_step
-<<<<<<< HEAD
-        }), model_filename
-=======
         }, model_filename)
 
         time.sleep(180)
->>>>>>> ec116249446922a26278db22d3cae8eda6c92362
 
 if __name__ == '__main__':
     warnings.filterwarnings('ignore')

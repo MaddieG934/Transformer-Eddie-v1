@@ -1,10 +1,6 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset
-<<<<<<< HEAD
-from collections import Counter
-=======
->>>>>>> ec116249446922a26278db22d3cae8eda6c92362
 
 class BilingualDataset(Dataset):
     def __init__(self, ds, tokenizer_src, tokenizer_tgt, src_lang, tgt_lang, seq_len) -> None:
